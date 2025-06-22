@@ -22,10 +22,11 @@ body {
     border: 1px solid black;
     flex: 3;
     display: flex;
+    justify-content: center;
 }
 
-#display-context{
-    margin: auto;
+#display-content{
+    align-self: center;
 }
 
 #commands{
