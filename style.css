@@ -1,0 +1,75 @@
+body {
+    height: 100vh;
+    display: flex;
+    background-color: black;
+    font-family:'Times New Roman', Times, serif;
+}
+
+#container {
+    background-color: white;
+    width: 280px;
+    height: 350px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: black;
+}
+
+#screen{
+    border: 1px solid black;
+    flex: 3;
+    display: flex;
+}
+
+#display-context{
+    margin: auto;
+}
+
+#commands{
+    display: flex;
+    gap: 13px;
+    flex: 1;
+    justify-content: right;
+}
+
+#commands .buttons{
+    width: 50px;
+}
+
+#pad{
+    flex: 7;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items:center;
+}
+
+#pad .buttons{
+    height: 40px;
+    width: 50px;
+    flex: none;
+}
+
+.buttons{
+    border: 1px solid black;
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.clear{
+    margin-right: auto;
+}
+
+.buttons:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.buttons:active{
+    background-color: grey;
+    color: black;
+}
