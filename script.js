@@ -16,18 +16,10 @@ let new_num = true;
 function operate(s, a, b){
     num1 = num2 = sign = null;
     switch(s){
-        case '+': 
-            result = add(a, b);
-            break;
-        case '-': 
-            result = subtract(a, b);
-            break;
-        case '*': 
-            result = multiply(a, b);
-            break;
-        case '/': 
-            result = divide(a, b);
-            break;
+        case '+': result = add(a, b); break;
+        case '-': result = subtract(a, b); break;
+        case '*': result = multiply(a, b); break;
+        case '/': result = divide(a, b); break;
     }
     display = `${result}`;
     setDisplay();
@@ -38,6 +30,7 @@ function operate(s, a, b){
 
 const digitBtns = document.querySelectorAll(".digit");
 const signBtns = document.querySelectorAll(".sign");
+const equalBtn = document.querySelector(".equal");
 const screen = document.querySelector("#display-content");
 
 let display = "";
@@ -56,7 +49,7 @@ digitBtns.forEach(button => {
     });
 });
 
-let result = null;
+let result;
 
 signBtns.forEach(button => {
     button.addEventListener("click", function(){
@@ -86,4 +79,15 @@ signBtns.forEach(button => {
         }
         console.log(`num1: ${num1} num2: ${num2} sign: ${sign}`);
     });
+});
+
+equalBtn.addEventListener("click", function(){
+    console.log(state);
+    if (display === "" && state === 0) return;
+
+    if (state === 1 && !new_num){
+        num2 = parseInt(display);
+        result = operate(sign, num1, num2);
+        num1 = result;
+    }
 });
