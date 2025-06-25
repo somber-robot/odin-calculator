@@ -9,13 +9,20 @@ const divide = (a,b) => {
     return a/b;
 };
 
-function operate(sign, a, b){
-    switch(sign){
-        case "+": return add(a,b);
-        case "-": return subtract(a,b);
-        case "/": return divide(a,b);
-        case "*": return multiply(a,b);
+let result;
+function operate(){
+    switch(stack[1]){
+        case "+": result = add(stack[0],stack[2]); break;
+        case "-": result = subtract(stack[0],stack[2]); break;
+        case "/": result = divide(stack[0],stack[2]); break;
+        case "*": result = multiply(stack[0],stack[2]); break;
     }
+
+    display = "" + result;
+    setDisplay()
+    stack = [];
+    stack.push(result);
+    newNum = true;
 }
 
 let stack = [];
@@ -28,13 +35,17 @@ const setDisplay = () => screen.innerHTML = display;
 // DIGITS
 const digitBtns = document.querySelectorAll(".digit");
 const MAX = 12;
+let newNum = true;
 
 digitBtns.forEach(button =>{
     button.addEventListener("click", function(){
         if (display.length >= MAX) return;
         if (button.innerHTML === "0" && display === "0") return;
         
-        if (display === "0") display = button.innerHTML;
+        if (display === "0" || newNum) {
+            display = button.innerHTML;
+            newNum = false;
+        }
         else display += button.innerHTML;
         
         setDisplay();
@@ -58,4 +69,32 @@ clearBtn.addEventListener("click", function(){
     display = "";
     setDisplay();
     stack = [];
+});
+
+// SIGNS
+const signBts = document.querySelectorAll(".sign");
+
+signBts.forEach(button => {
+    button.addEventListener("click", function(){
+        switch(stack.length){
+            case 0:
+                if (display === "") return;
+                stack.push(parseInt(display));
+                stack.push(button.innerText);
+                display = "";
+                setDisplay();
+                break;
+            case 2:
+                if (display === "" || newNum){
+                    stack.pop();
+                    stack.push(button.innerText);
+                }else{
+                    stack.push(parseInt(display));
+                    operate();
+                    stack.push(button.innerText);
+                }
+                break;
+        }
+        console.log("stack: " + stack);
+    });
 });
