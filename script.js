@@ -49,3 +49,13 @@ delBtn.addEventListener("click", function(){
     display = display.substring(0, display.length-1);
     setDisplay();
 });
+
+
+// CLEAR
+const clearBtn = document.querySelector(".clear");
+
+clearBtn.addEventListener("click", function(){
+    display = "";
+    setDisplay();
+    stack = [];
+});
