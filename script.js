@@ -59,6 +59,7 @@ delBtn.addEventListener("click", function(){
     if (display.length == 0) return;
     display = display.substring(0, display.length-1);
     setDisplay();
+    newNum = false;
 });
 
 
@@ -69,6 +70,7 @@ clearBtn.addEventListener("click", function(){
     display = "";
     setDisplay();
     stack = [];
+    console.log("stack: " + stack);
 });
 
 // SIGNS
@@ -104,6 +106,7 @@ signBts.forEach(button => {
                 }
                 break;
         }
+        console.log("stack: " + stack);
     });
 });
 
@@ -113,10 +116,21 @@ const equalBtn = document.querySelector(".equal");
 equalBtn.addEventListener("click", function(){
     switch(stack.length){
         case 2:
-            if (display === "") return;
+            if (display === "" || newNum) return;
             stack.push(+display);
             operate();
-            newNum = false;
             break;
     }
+    console.log("stack: " + stack);
+});
+
+// DOT
+const dotBtn = document.querySelector(".dot");
+
+dotBtn.addEventListener("click", function (){
+    if (display.includes(".")) return;
+    if (display === "" || newNum) display = "0.";
+    else display += ".";
+    setDisplay();
+    newNum = false;
 });
