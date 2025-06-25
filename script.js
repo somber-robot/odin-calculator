@@ -32,7 +32,11 @@ const MAX = 12;
 digitBtns.forEach(button =>{
     button.addEventListener("click", function(){
         if (display.length >= MAX) return;
-        display += button.innerHTML;
+        if (button.innerHTML === "0" && display === "0") return;
+        
+        if (display === "0") display = button.innerHTML;
+        else display += button.innerHTML;
+        
         setDisplay();
     });
 });
