@@ -31,6 +31,9 @@ const log = document.querySelector("#history");
 let display = "";
 let history = "";
 const setDisplay = () => {
+    if (display.length > MAX)
+        display = "" + Number(+display).toExponential(3);
+
     screen.innerHTML = display;
     log.innerHTML = history;
 }
@@ -40,7 +43,7 @@ const MAX = 12;
 let newNum = true;
 
 function addDigit(digit){
-    if (display.length >= MAX) return;
+    if (display.length >= MAX && !newNum) return;
     if (digit === "0" && display === "0") return;
     
     if (display === "0" || newNum) {
@@ -58,7 +61,7 @@ digitBtns.forEach(button =>{
     });
 });
 
-const delBtn = document.querySelector(".delete");
+const delBtn = document.querySelector("#delete");
 
 function del(){
     if (display.length == 0) return;
@@ -69,7 +72,7 @@ function del(){
 
 delBtn.addEventListener("click", del);
 
-const clearBtn = document.querySelector(".clear");
+const clearBtn = document.querySelector("#clear");
 
 function clear(){
     history = "";

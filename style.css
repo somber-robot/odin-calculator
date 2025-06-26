@@ -1,49 +1,68 @@
 body {
     height: 100vh;
     display: flex;
-    background-color: black;
+    background-color: grey;
     font-family:'Times New Roman', Times, serif;
 }
 
 #container {
-    background-color: white;
-    width: 280px;
+    background-color: #2b2d42ff;
+    width: 270px;
     height: 350px;
     margin: auto;
     box-sizing: border-box;
+    border-radius: 25px;
     padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 8px;
     color: black;
+    border: 2px outset black;
 }
 
 #screen{
-    border: 1px solid black;
-    flex: 3;
+    background-color: #edf2f4ff;
+    border-radius: 10px;
+    flex: 3.5;
     display: flex;
     flex-direction: column;
+    border-style: outset;
+    padding: 10px;
+    
 }
 
 #history{
+    flex: 2;
     margin: 0;
-    color: green;
+    text-align: right;
 }
 
 #display-content{
+    flex: 1;
     margin: 0;
-    color: red;
+    text-align: right;
+    font-size: 28px;
 }
 
 #commands{
     display: flex;
-    gap: 13px;
-    flex: 1;
-    justify-content: right;
+    flex: 1.2;
 }
 
 #commands .buttons{
     width: 50px;
+    border-radius: 9px;
+}
+
+#clear{
+    margin-right: auto;
+    background-color: #164450ff;
+    color: white;
+}
+
+#delete{
+    background-color: #ef233cff;
+    color: white;
 }
 
 #pad{
@@ -55,25 +74,33 @@ body {
 }
 
 #pad .buttons{
-    height: 40px;
+    height: 38px;
     width: 50px;
     flex: none;
+    border-radius: 10px;
+    color: white;
 }
 
 .buttons{
-    border: 1px solid black;
-    background-color: white;
     font-family: 'Times New Roman', Times, serif;
 }
 
-.clear{
-    margin-right: auto;
+.digit,
+.dot {
+    background-color: #8d99aeff;
 }
 
-.buttons:hover {
+.sign,
+.equal{
+    background-color: #6f8a91ff;
+}
+
+.buttons:hover,
+#commands .buttons:hover{
     background-color: black;
     color: white;
     cursor: pointer;
+    border: 2px outset white;
 }
 
 .buttons:active{
