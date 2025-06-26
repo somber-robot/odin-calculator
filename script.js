@@ -30,10 +30,13 @@ const screen = document.querySelector("#display-content");
 const log = document.querySelector("#history");
 let display = "";
 let history = "";
+const formatNum = (num) => {
+    if (num.length > MAX)
+        num = "" + Number(num).toExponential(3);
+    return num;
+};
 const setDisplay = () => {
-    if (display.length > MAX)
-        display = "" + Number(+display).toExponential(3);
-
+    display = formatNum(display);
     screen.innerHTML = display;
     log.innerHTML = history;
 }
@@ -131,7 +134,7 @@ const equalBtn = document.querySelector(".equal");
 function equals(){
     if (stack.length !== 2 || display === "" || newNum) return;
     stack.push(+display);
-    history = `${stack[0]} ${stack[1]} ${stack[2]}`;
+    history = `${formatNum(stack[0])} ${stack[1]} ${formatNum(stack[2])}`;
     operate();
 }
 
