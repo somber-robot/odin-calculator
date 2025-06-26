@@ -1,8 +1,31 @@
 body {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     background-color: grey;
     font-family:'Times New Roman', Times, serif;
+    margin: 0;
+}
+
+#header{
+    color: black;
+    padding: 15px 35px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#header h1{
+    margin: 0;
+    margin-right:auto;
+}
+
+#header a{
+    color: black;
+}
+
+#header a:hover{
+    color: white;
 }
 
 #container {
@@ -106,4 +129,11 @@ body {
 .buttons:active{
     background-color: grey;
     color: black;
+}
+
+#footer{
+    /* background-color: darkgray; */
+    color: black;
+    padding: 10px;
+    text-align: center;
 }
