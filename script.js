@@ -27,8 +27,13 @@ function operate(){
 }
 
 const screen = document.querySelector("#display-content");
+const log = document.querySelector("#history");
 let display = "";
-const setDisplay = () => screen.innerHTML = display;
+let history = "";
+const setDisplay = () => {
+    screen.innerHTML = display;
+    log.innerHTML = history;
+}
 
 const digitBtns = document.querySelectorAll(".digit");
 const MAX = 12;
@@ -67,6 +72,7 @@ delBtn.addEventListener("click", del);
 const clearBtn = document.querySelector(".clear");
 
 function clear(){
+    history = "";
     display = "";
     setDisplay();
     stack = [];
@@ -83,10 +89,12 @@ function addSign(sign){
             stack.push(+display);
             stack.push(sign);
             display = "";
-            setDisplay();
             break;
         case 1:
-            if (display === "") stack = [];
+            if (display === ""){
+                stack = [];
+                return;
+            }
             else {
                 newNum = true;
                 stack.pop();
@@ -105,6 +113,8 @@ function addSign(sign){
             }
             break;
     }
+    history = `${stack[0]} ${stack[1]}`;
+    setDisplay();
 }
 
 signBts.forEach(button => {
@@ -118,6 +128,7 @@ const equalBtn = document.querySelector(".equal");
 function equals(){
     if (stack.length !== 2 || display === "" || newNum) return;
     stack.push(+display);
+    history = `${stack[0]} ${stack[1]} ${stack[2]}`;
     operate();
 }
 
