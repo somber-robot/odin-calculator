@@ -31,6 +31,7 @@ const log = document.querySelector("#history");
 let display = "";
 let history = "";
 const formatNum = (num) => {
+    num = "" + num;
     if (num.length > MAX)
         num = "" + Number(num).toExponential(3);
     return num;
@@ -119,7 +120,7 @@ function addSign(sign){
             }
             break;
     }
-    history = `${stack[0]} ${stack[1]}`;
+    history = `${formatNum(stack[0])} ${stack[1]}`;
     setDisplay();
 }
 
